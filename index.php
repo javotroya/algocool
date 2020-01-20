@@ -3,6 +3,15 @@
 <head>
 	<meta charset="utf-8">
 	<title>AlgoCool</title>
+	<!--[if IE]> <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1"> <![endif]-->
+	<meta name="viewport" content="width=device-width, minimal-ui, initial-scale=1.0, maximum-scale=1.0, user-scalable=no" />
+	<meta name="description" content="The official YTS YIFY Movies Torrents website. Download free yify movies torrents in 720p, 1080p and 3D quality. The fastest downloads at the smallest size." />
+	<meta name="keywords" content="yts, yify, yify movies, yts movies, yts torrents, yify movies, yify torrents" />
+	<meta property="og:title" content="The Official Home of YIFY Movies Torrent Download - YTS"/>
+	<meta property="og:image" content="https://yts.lt/assets/images/website/og_yts_logo.png"/>
+	<meta property="og:description" content="The official YTS YIFY Movies Torrents website. Download free yify movies torrents in 720p, 1080p and 3D quality. The fastest downloads at the smallest size."/>
+	<meta property="og:url" content="https%3A%2F%2Falgocool.xyz%2F" />
+	<!--[if IE]> <meta http-equiv="X-UA-Compatible" content="IE=Edge,chrome=1" /> <![endif]-->
 	<link rel="stylesheet" type="text/css" href="node_modules/bootswatch/dist/darkly/bootstrap.min.css">
 	<link rel="stylesheet" type="text/css" href="node_modules/@fortawesome/fontawesome-free/css/all.min.css">
 	<link rel="stylesheet" type="text/css" href="css/main.css">
