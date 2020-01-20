@@ -67,7 +67,7 @@ let Movie = new App.Router.Movies();
 							<li>Quality: {{quality}}</li>
 							<li>Type: {{type}}</li>
 							<li>Size: {{size}}</li>
-							<li>Last Update: {{date_uploaded}}</li>
+							<li><small>Last Update: {{date_uploaded}}</small></li>
 						</ul>
 						<a class="btn btn-block btn-info" href="{{url}}">Download</a>
 					</div>

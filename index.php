@@ -10,7 +10,7 @@
 <body>
 	<div class="jumbotron jumbotron-fluid" id="search-form-container"></div>
 	<div class="row justify-content-md-center" id="pagination"></div>
-	<div class="loader col justify-content-md-center text-center" id="loader"><span class="fas fa-sync fa-spin fa-4x"></span></div>
+	<div class="loader col justify-content-md-center text-center" id="loader"><span class="fas fa-redo-alt fa-spin fa-4x"></span></div>
 	<div class="container-xl" id="main"></div>
 
 	<script type="text/javascript" src="node_modules/jquery/dist/jquery.min.js"></script>
