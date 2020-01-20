@@ -15,6 +15,7 @@
   },
   "devDependencies": {
     "backbone": "^1.4.0",
+    "jquery-deparam": "^0.5.3",
     "mustache": "^4.0.0",
     "underscore": "^1.9.2"
   }

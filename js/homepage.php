@@ -6,64 +6,75 @@ App.View.HomePage = App.View.extend({
         App.View.prototype.initialize.apply(this, [options]);
         const self = this;
         this.collection.fetch({
-        	data: options.fetchData,
+        	data: this.options.fetchData,
         	success: function(collection, xhr){
         		self.renderPagination(xhr);
         	}
         });
     },
+    waitFunction: function(collection){
+    	let response = collection.toJSON()[0];
+    	response.movie_word = response.movie_count === 1 ? 'Movie' : 'Movies';
+    	this.data = response;
+    },
     className: 'HomePage',
     element: '#main',
     template: '#AppViewHomePage',
     renderPagination: function(xhr){
-    	let pages = Math.floor(xhr.data.movie_count / 20),
+    	let fetchData = this.options.fetchData,
+    		pages = Math.floor(xhr.data.movie_count / 20),
     		currentPage = xhr.data.page_number,
     		html = '<ul class="pagination justify-content-center">';
-    	if(pages > 20){
-    		for(var i = 1; i <= 20; i++){
-    			html += [
-    			`<li class="page-item${currentPage === i ? ' active' : ''}">`,
-    				`<a class="page-link" href="#movies/${i}">`,
-    					i,
-    				`</a>`,
-    			`</li>`
-    			].join('\n');
-
+    	if(pages > 10){
+    		html += `<li class="page-item"><a class="page-link" href="#">first</a></li>`;
+    		let n = currentPage > 10 ? currentPage - 5 : 1,
+    			target = n + 10;
+    		for(let i = n; i <= target; i++){
+    			if(i < pages){
+    				fetchData.page = i;
+    				html += [
+	    			`<li class="page-item${currentPage === i ? ' active' : ''}">`,
+	    				`<a class="page-link" href="#movies?${$.param(fetchData)}">`,
+	    					i,
+	    				`</a>`,
+	    			`</li>`
+	    			].join('\n');
+    			}
     		}
+    		html += `<li class="page-item"><a class="page-link" href="#movies/${pages}">last</a></li>`;
     	}
 
     	html += '</ul>';
     	$('#pagination').html(html);
+    },
+    postRender: function(){
+    	_.forEach(this.options.fetchData, function(key, val){
+    		console.log(key, val);
+    	});
     }
 });
 
 App.Router.HomePage = Backbone.Router.extend({
 	routes: {
-		'' : function(){
-			let collection = new App.Collection.Movies(),
-			view = new App.View.HomePage({
-				collection: collection,
-				fetchData: {
-	        		with_rt_ratings: true
-	        	}
-			});
-			App.Render(view);
-		},
-		'movies/:page': function(page){
-			let collection = new App.Collection.Movies(),
-			view = new App.View.HomePage({
-				collection: collection,
-				fetchData: {
-	        		with_rt_ratings: true,
-	        		page: page
-	        	}
-			});
-			App.Render(view);
-		}
+		'' : 'HomaPage',
+		'movies?*': 'HomePage'
 	},
 	initialize: function(){
         Backbone.Router.prototype.initialize.call(this);
-    }
+    },
+    HomePage: function(params){
+    	let filterParams = params || {};
+    	if(_.size(params) > 0){
+            filterParams = $.deparam(params);
+        }
+        filterParams.with_rt_ratings = true;
+		let collection = new App.Collection.Movies(),
+		view = new App.View.HomePage({
+			collection: collection,
+			fetchData: filterParams
+		});
+		App.Render(view);
+	}
 });
 
 let HomePage = new App.Router.HomePage();
@@ -71,7 +82,7 @@ let HomePage = new App.Router.HomePage();
 
 <script type="x-tmpl-mustache" id="AppViewHomePage" class="d-none">
 	<div class="row justify-content-md-center">
-		<h3>{{data.movie_count}} Movie(s) found</h3>
+		<h3>{{data.movie_count}} {{movie_word}} found</h3>
 	</div>
 	<div class="row row-cols-4">
 		{{#data.movies}}

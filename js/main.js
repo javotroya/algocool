@@ -53,15 +53,20 @@ App.View = Backbone.View.extend({
 	initialize: function(options) {
         let self = this;
         _.bindAll(this, 'render');
+        this.options = options || {};
+        if (!_.isUndefined(this.options.model)) {
+            this.model = this.options.model;
+        }
         this.postRender = this.postRender || function(){};
         this.preRender = this.preRender || function(){};
         this.render = _.wrap(this.render, function (render) {
         	self.preRender();
         	render();
-            self.postRender();
+        	if(!this.wait){
+        		self.postRender();
+        	}
             return self;
         });
-        $(this.el).data('view', this);
     },
     wait: this.wait || true,
     preRender: function(){},
@@ -77,6 +82,7 @@ App.View = Backbone.View.extend({
     			}
     			self.$el.html(Mustache.render(template, self.data));
     			$(self.element).html(self.el);
+    			self.postRender();
     		});
     	} else {
     		self.$el.html(Mustache.render(template, self.data));
@@ -84,7 +90,10 @@ App.View = Backbone.View.extend({
     	}
     	return this;
     },
-    postRender: function(){}
+    postRender: function(){
+    	this.delegateEvents(this.events);
+    	$(this.el).data('view', this);
+    }
 });
 
 App.Model.Movie = Backbone.Model.extend({
