@@ -11,6 +11,8 @@ App.View.Movie = App.View.extend({
     waitFunction: function(model){
     	this.data = model.toJSON().data.movie;
     	this.data.goBackURL = sessionStorage.getItem('goBackURL');
+    	this.generateMagnet();
+    	console.log(this.data);
     	$('#search-form-container').css({
     		'background': `url(${this.data.background_image_original})`,
     		'background-size': 'cover',
@@ -19,7 +21,28 @@ App.View.Movie = App.View.extend({
     	});
     	$('#pagination').slideUp();
     },
-    listen: 'model'
+    listen: 'model',
+    generateMagnet: function(){
+    	const self = this;
+    	let trackers = 'tr=' + [
+	    	'udp://open.demonii.com:1337/announce',
+	    	'udp://tracker.openbittorrent.com:80',
+	    	'udp://tracker.coppersurfer.tk:6969',
+	    	'udp://glotorrents.pw:6969/announce',
+	    	'udp://tracker.opentrackr.org:1337/announce',
+	    	'udp://torrent.gresille.org:80/announce',
+	    	'udp://p4p.arenabg.com:1337',
+	    	'udp://tracker.leechers-paradise.org:6969'
+    	].join('&tr=');
+    	console.log(trackers);
+    	let torrents = [];
+    	_.forEach(this.data.torrents, function(torrent){
+    		torrent.magnet = `magnet:?xt=urn:btih:${torrent.hash}&dn=${encodeURI(self.data.title)}&${trackers}`;
+    		torrents.push(torrent);
+    	});
+
+    	this.data.torrents = torrents;
+    }
 });
 
 App.Router.Movies = Backbone.Router.extend({
@@ -70,8 +93,17 @@ let Movie = new App.Router.Movies();
 							<li><small>Last Update: {{date_uploaded}}</small></li>
 						</ul>
 						<a class="btn btn-block btn-info" href="{{url}}">Download</a>
+						<a class="btn btn-block btn-warning" href="{{magnet}}">Get Magnet</a>
 					</div>
 				{{/torrents}}
+			</div>
+		</div>
+	</div>
+	<div class="row">
+		<div class="col">
+			<h3>Trailer {{title}}</h3>
+			<div class="embed-responsive embed-responsive-16by9">
+			  <iframe class="embed-responsive-item" src="https://www.youtube.com/embed/{{yt_trailer_code}}?rel=0&autoplay=0&controls=0" allowfullscreen></iframe>
 			</div>
 		</div>
 	</div>

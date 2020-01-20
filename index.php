@@ -12,6 +12,11 @@
 	<div class="row justify-content-md-center" id="pagination"></div>
 	<div class="loader col justify-content-md-center text-center" id="loader"><span class="fas fa-redo-alt fa-spin fa-4x"></span></div>
 	<div class="container-xl" id="main"></div>
+	<div id="footer" class="my-3 row">
+		<div class="col text-center">
+			<p><em>No copyrights of any kind. None of this is ours and we make no profit of it.</em></p>
+		</div>
+	</div>
 
 	<script type="text/javascript" src="node_modules/jquery/dist/jquery.min.js"></script>
 	<script type="text/javascript" src="node_modules/mustache/mustache.min.js"></script>
