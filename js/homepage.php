@@ -10,19 +10,23 @@ App.View.HomePage = App.View.extend({
         	success: function(collection, xhr){
         		self.renderPagination(xhr);
         		$('#pagination').slideDown();
-        		let number = Math.floor(Math.random() * self.collection.toJSON()[0].data.movies.length),
-        			background;
-        		_.forEach(self.collection.toJSON()[0].data.movies, function(movie, key){
-        			if(key === number){
-        				background = movie.large_cover_image;
-        			}
-        		});
-        		$('#search-form-container').css({
-		    		'background': `url(${background})`,
-		    		'background-size': 'cover',
-		    		'background-repeat': 'no-repeat',
-		    		'background-position': 'center center'
-		    	});
+        		if(self.collection.toJSON()[0].data.hasOwnProperty('movies')){
+        			let number = Math.floor(Math.random() * self.collection.toJSON()[0].data.movies.length),
+	        			background;
+	        		_.forEach(self.collection.toJSON()[0].data.movies, function(movie, key){
+	        			if(key === number){
+	        				background = movie.large_cover_image;
+	        			}
+	        		});
+	        		$('#search-form-container').css({
+			    		'background': `url(${background})`,
+			    		'background-size': 'cover',
+			    		'background-repeat': 'no-repeat',
+			    		'background-position': 'center center'
+			    	});
+        		} else {
+        			App.Render404();
+        		}
         	}
         });
     },

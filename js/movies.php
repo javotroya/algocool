@@ -10,16 +10,18 @@ App.View.Movie = App.View.extend({
     template: '#AppViewMovie',
     waitFunction: function(model){
     	this.data = model.toJSON().data.movie;
-    	this.data.goBackURL = sessionStorage.getItem('goBackURL');
-    	this.generateMagnet();
-    	this.generateYouMayLike();
-    	$('#search-form-container').css({
-    		'background': `url(${this.data.background_image_original})`,
-    		'background-size': 'cover',
-    		'background-repeat': 'no-repeat',
-    		'background-position': 'center center'
-    	});
-    	$('#pagination').slideUp();
+    	if(this.data.id){
+    		this.data.goBackURL = sessionStorage.getItem('goBackURL');
+	    	this.generateMagnet();
+	    	this.generateYouMayLike();
+	    	$('#search-form-container').css({
+	    		'background': `url(${this.data.background_image_original})`,
+	    		'background-size': 'cover',
+	    		'background-repeat': 'no-repeat',
+	    		'background-position': 'center center'
+	    	});
+	    	$('#pagination').slideUp();
+    	}
     },
     listen: 'model',
     generateMagnet: function(){
@@ -69,6 +71,12 @@ App.View.Movie = App.View.extend({
 				});
 			}
 		})
+    },
+    postRender: function(){
+    	App.View.prototype.postRender.apply(this);
+    	if(this.data.id === 0){
+    		App.Render404();
+    	}
     }
 });
 

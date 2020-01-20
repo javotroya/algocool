@@ -59,6 +59,16 @@ App.HideLoader = function(){
 	$('#main').show();
 };
 
+App.Render404 = function(){
+	$('#main')
+	.html('<h1 class="text-center my-3">404 Not found</h1>')
+	.append('<p class="text-center mb-4">Sorry, we tried so hard and got so far, but in the end, it didn\'t even matter...</p>')
+	.append(`<p class="text-center">
+		<a class="btn btn-primary" title="...until you are complete again"
+		href="${sessionStorage.getItem('goBackURL')}">From where you came, you should remain...</a>
+	</p>`);
+};
+
 App.View = Backbone.View.extend({
 	initialize: function(options) {
         let self = this;
