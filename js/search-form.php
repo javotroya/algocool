@@ -14,7 +14,7 @@ App.View.SearchForm = App.View.extend({
     		let form = this.$el.find(e.currentTarget),
     			HomaPage = $('.HomePage').data('view'),
     			data = form.serialize();
-    		Backbone.history.navigate(`movies?${data}`, {trigger: true});
+    		Backbone.history.navigate(`?${data}`, {trigger: true});
     	}
     }
 });

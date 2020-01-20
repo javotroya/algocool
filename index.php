@@ -27,6 +27,11 @@
 	<script type="text/javascript" src="js/main.js"></script>
 	<?php require_once 'js/search-form.php'; ?>
 	<?php require_once 'js/homepage.php'; ?>
-	<script type="text/javascript">Backbone.history.start({pushState: false});</script>
+	<script type="text/javascript">
+		Backbone.history.start({pushState: false});
+		if(Backbone.history.fragment === ''){
+			Backbone.history.navigate('?', {trigger: true});
+		}
+	</script>
 </body>
 </html>

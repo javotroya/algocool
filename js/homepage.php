@@ -26,7 +26,7 @@ App.View.HomePage = App.View.extend({
     		currentPage = xhr.data.page_number,
     		html = '<ul class="pagination justify-content-center">';
     	if(pages > 10){
-    		html += `<li class="page-item"><a class="page-link" href="#">first</a></li>`;
+    		html += `<li class="page-item"><a class="page-link" href="#?">first</a></li>`;
     		let n = currentPage > 10 ? currentPage - 5 : 1,
     			target = n + 10;
     		for(let i = n; i <= target; i++){
@@ -41,7 +41,8 @@ App.View.HomePage = App.View.extend({
 	    			].join('\n');
     			}
     		}
-    		html += `<li class="page-item"><a class="page-link" href="#movies/${pages}">last</a></li>`;
+    		fetchData.page = pages;
+    		html += `<li class="page-item"><a class="page-link" href="#movies?${$.param(fetchData)}">last</a></li>`;
     	}
 
     	html += '</ul>';
@@ -56,8 +57,7 @@ App.View.HomePage = App.View.extend({
 
 App.Router.HomePage = Backbone.Router.extend({
 	routes: {
-		'' : 'HomaPage',
-		'movies?*': 'HomePage'
+		'?*': 'HomePage'
 	},
 	initialize: function(){
         Backbone.Router.prototype.initialize.call(this);
