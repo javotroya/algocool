@@ -8,9 +8,9 @@
 	<meta name="description" content="The unofficial YTS YIFY Movies Torrents website. Download free yify movies torrents in 720p, 1080p and 3D quality. The fastest downloads at the smallest size." />
 	<meta name="keywords" content="yts, yify, yify movies, yts movies, yts torrents, yify movies, yify torrents" />
 	<meta property="og:title" content="The Unofficial Home of YIFY Movies Torrent Download - YTS"/>
-	<meta property="og:image" content="https://yts.lt/assets/images/website/og_yts_logo.png"/>
+	<meta property="og:image" content="https://www.algocool.yxz/img/commando.jpg"/>
 	<meta property="og:description" content="The unofficial YTS YIFY Movies Torrents website. Download free yify movies torrents in 720p, 1080p and 3D quality. The fastest downloads at the smallest size."/>
-	<meta property="og:url" content="http://www.algocool.xyz" />
+	<meta property="og:url" content="https://www.algocool.xyz" />
 	<!--[if IE]> <meta http-equiv="X-UA-Compatible" content="IE=Edge,chrome=1" /> <![endif]-->
 	<link rel="stylesheet" type="text/css" href="node_modules/bootswatch/dist/darkly/bootstrap.min.css">
 	<link rel="stylesheet" type="text/css" href="node_modules/@fortawesome/fontawesome-free/css/all.min.css">
