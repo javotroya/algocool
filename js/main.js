@@ -74,11 +74,14 @@ App.View = Backbone.View.extend({
     	let self = this, 
     		template = $(this.template).html();
     	if(this.wait){
-    		this.listenTo(this.collection, 'sync', function(collection){
+    		this.listenTo(this[this.listen], 'sync', function(data){
     			if(_.isFunction(self.waitFunction)){
-    				self.waitFunction(collection);
+    				self.waitFunction(data);
     			} else {
-    				self.data = self.collection.toJSON()[0];
+    				self.data = self[this.listen].toJSON();
+    				if(!_.isUndefined(self.data[0])){
+    					self.data = self.data[0];
+    				}
     			}
     			self.$el.html(Mustache.render(template, self.data));
     			$(self.element).html(self.el);
@@ -90,6 +93,7 @@ App.View = Backbone.View.extend({
     	}
     	return this;
     },
+    listen: 'collection',
     postRender: function(){
     	this.delegateEvents(this.events);
     	$(this.el).data('view', this);
@@ -97,7 +101,9 @@ App.View = Backbone.View.extend({
 });
 
 App.Model.Movie = Backbone.Model.extend({
-	url: `https://yts.lt/api/v2/movie_details.json?movie_id=${this.id}`
+	url: function(){
+		return `https://yts.lt/api/v2/movie_details.json?movie_id=${this.id}`
+	}
 });
 
 App.Collection.Movies = Backbone.Collection.extend({
