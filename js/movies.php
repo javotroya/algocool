@@ -12,7 +12,6 @@ App.View.Movie = App.View.extend({
     	this.data = model.toJSON().data.movie;
     	this.data.goBackURL = sessionStorage.getItem('goBackURL');
     	this.generateMagnet();
-    	console.log(this.data);
     	$('#search-form-container').css({
     		'background': `url(${this.data.background_image_original})`,
     		'background-size': 'cover',
@@ -34,7 +33,6 @@ App.View.Movie = App.View.extend({
 	    	'udp://p4p.arenabg.com:1337',
 	    	'udp://tracker.leechers-paradise.org:6969'
     	].join('&tr=');
-    	console.log(trackers);
     	let torrents = [];
     	_.forEach(this.data.torrents, function(torrent){
     		torrent.magnet = `magnet:?xt=urn:btih:${torrent.hash}&dn=${encodeURI(self.data.title)}&${trackers}`;
