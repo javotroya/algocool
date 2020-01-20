@@ -12,8 +12,7 @@
 	<meta property="og:description" content="The unofficial YTS YIFY Movies Torrents website. Download free yify movies torrents in 720p, 1080p and 3D quality. The fastest downloads at the smallest size."/>
 	<meta property="og:url" content="http://www.algocool.xyz" />
 	<!--[if IE]> <meta http-equiv="X-UA-Compatible" content="IE=Edge,chrome=1" /> <![endif]-->
-	<link rel="stylesheet" type="text/css" href="node_modules/bootswatch/dist/darkly/bootstrap.min.css">
-	<link rel="stylesheet" type="text/css" href="node_modules/@fortawesome/fontawesome-free/css/all.min.css">
+	<link rel="stylesheet" type="text/css" href="css/lib.css">
 	<link rel="stylesheet" type="text/css" href="css/main.css">
 </head>
 <body>
