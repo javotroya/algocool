@@ -26,15 +26,8 @@
 			<p><em>No copyrights of any kind. None of this is ours and we make no profit of it.</em></p>
 		</div>
 	</div>
-
-	<script type="text/javascript" src="node_modules/jquery/dist/jquery.min.js"></script>
-	<script type="text/javascript" src="node_modules/mustache/mustache.min.js"></script>
-	<script type="text/javascript" src="node_modules/underscore/underscore-min.js"></script>
-	<script type="text/javascript" src="node_modules/backbone/backbone-min.js"></script>
-	<script type="text/javascript" src="node_modules/jquery-deparam/jquery-deparam.js"></script>
-	<script type="text/javascript" src="node_modules/bootstrap/dist/js/bootstrap.min.js"></script>
-	<script type="text/javascript" src="node_modules/@fortawesome/fontawesome-free/js/all.min.js" data-auto-replace-svg="nest"></script>
-	<script type="text/javascript" src="js/main.js"></script>
+	<script type="text/javascript" src="js/lib.js"></script>
+	<script type="text/javascript" src="js/app.js"></script>
 	<?php require_once 'js/search-form.php'; ?>
 	<?php require_once 'js/homepage.php'; ?>
 	<?php require_once 'js/movies.php'; ?>
