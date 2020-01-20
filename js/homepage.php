@@ -34,7 +34,7 @@ App.View.HomePage = App.View.extend({
     				fetchData.page = i;
     				html += [
 	    			`<li class="page-item${currentPage === i ? ' active' : ''}">`,
-	    				`<a class="page-link" href="#movies?${$.param(fetchData)}">`,
+	    				`<a class="page-link" href="#?${$.param(fetchData)}">`,
 	    					i,
 	    				`</a>`,
 	    			`</li>`
@@ -42,7 +42,7 @@ App.View.HomePage = App.View.extend({
     			}
     		}
     		fetchData.page = pages;
-    		html += `<li class="page-item"><a class="page-link" href="#movies?${$.param(fetchData)}">last</a></li>`;
+    		html += `<li class="page-item"><a class="page-link" href="#?${$.param(fetchData)}">last</a></li>`;
     	}
 
     	html += '</ul>';
