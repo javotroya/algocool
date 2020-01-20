@@ -99,7 +99,7 @@ let Movie = new App.Router.Movies();
 			</div>
 		</div>
 	</div>
-	<div class="row">
+	<div class="row my-3">
 		<div class="col">
 			<h3>Trailer {{title}}</h3>
 			<div class="embed-responsive embed-responsive-16by9">
