@@ -125,5 +125,7 @@ let HomePage = new App.Router.HomePage();
 		</div>
 		{{/data.movies}}
 	</div>
-	<a href="#?" style="position: absolute; top:5px; left:5px; color: white;"><span class="fas fa-home fa-4x"></span></a>
+	<a href="#?" style="position: absolute; top:5px; left:5px; color: white;" title="Home">
+		<span class="fas fa-home fa-4x"></span>
+	</a>
 </script>
