@@ -10,7 +10,7 @@ App.View.HomePage = App.View.extend({
         	success: function(collection, xhr){
         		self.renderPagination(xhr);
         		$('#pagination').slideDown();
-        		let number = Math.floor(Math.random() * self.collection.toJSON()[0].data.movie_count),
+        		let number = Math.floor(Math.random() * self.collection.toJSON()[0].data.movies.length),
         			background;
         		_.forEach(self.collection.toJSON()[0].data.movies, function(movie, key){
         			if(key === number){
