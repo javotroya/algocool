@@ -15,6 +15,9 @@ App.View.SearchForm = App.View.extend({
     			HomaPage = $('.HomePage').data('view'),
     			data = form.serialize();
     		Backbone.history.navigate(`?${data}`, {trigger: true});
+    	},
+    	'change select': function(){
+    		this.$el.find('.search-form').trigger('submit');
     	}
     }
 });

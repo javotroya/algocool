@@ -50,7 +50,8 @@ App.View.HomePage = App.View.extend({
     		currentPage = xhr.data.page_number,
     		html = '<div class="col-md-8"><nav aria-label="..." id="pagination"><ul class="pagination justify-content-center">';
     	if(pages > 10){
-    		html += `<li class="page-item"><a class="page-link" href="#?">first</a></li>`;
+    		fetchData.page = 1;
+    		html += `<li class="page-item"><a class="page-link" href="#?${$.param(fetchData)}">first</a></li>`;
     		let n = currentPage > 10 ? currentPage - 5 : 1,
     			target = n + 10;
     		for(let i = n; i <= target; i++){
@@ -124,4 +125,5 @@ let HomePage = new App.Router.HomePage();
 		</div>
 		{{/data.movies}}
 	</div>
+	<a href="#?" style="position: absolute; top:5px; left:5px; color: white;"><span class="fas fa-home fa-4x"></span></a>
 </script>
