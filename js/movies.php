@@ -10,6 +10,7 @@ App.View.Movie = App.View.extend({
     template: '#AppViewMovie',
     waitFunction: function(model){
     	this.data = model.toJSON().data.movie;
+    	this.data.goBackURL = sessionStorage.getItem('goBackURL');
     	$('#search-form-container').css({
     		'background': `url(${this.data.background_image_original})`,
     		'background-size': 'cover',
@@ -46,7 +47,9 @@ let Movie = new App.Router.Movies();
 		<div class="col">
 			<h2>{{title}} - {{year}}<sup><small>{{rating}}</small></sup></h2>
 			{{#genres}}
-				<span class="badge badge-success badge-pill">{{.}}</span>
+				<span class="badge badge-success badge-pill">
+					<a href="#?genre={{.}}" class="text-reset">{{.}}</a>
+				</span>
 			{{/genres}}
 		</div>
 	</div>
@@ -72,7 +75,5 @@ let Movie = new App.Router.Movies();
 			</div>
 		</div>
 	</div>
-	<div class="row">
-
-	</div>
+<a href="{{goBackURL}}" style="position: absolute; top:5px; left:5px; color: white;"><span class="fas fa-arrow-left fa-4x"></span></a>
 </script>

@@ -49,6 +49,16 @@ App.Clear = function (view) {
     }
 };
 
+App.ShowLoader = function(){
+	$('#loader').show();
+	$('#main').hide();
+};
+
+App.HideLoader = function(){
+	$('#loader').hide();
+	$('#main').show();
+};
+
 App.View = Backbone.View.extend({
 	initialize: function(options) {
         let self = this;
@@ -90,6 +100,7 @@ App.View = Backbone.View.extend({
     	} else {
     		self.$el.html(Mustache.render(template, self.data));
     		$(this.element).html(this.el);
+    		App.HideLoader();
     	}
     	return this;
     },
@@ -97,6 +108,7 @@ App.View = Backbone.View.extend({
     postRender: function(){
     	this.delegateEvents(this.events);
     	$(this.el).data('view', this);
+    	App.HideLoader();
     }
 });
 

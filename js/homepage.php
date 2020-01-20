@@ -9,7 +9,6 @@ App.View.HomePage = App.View.extend({
         	data: this.options.fetchData,
         	success: function(collection, xhr){
         		self.renderPagination(xhr);
-        		$('#search-form-container').css('background', 'none');
         		$('#pagination').slideDown();
         	}
         });
@@ -32,7 +31,7 @@ App.View.HomePage = App.View.extend({
     	let fetchData = this.options.fetchData,
     		pages = Math.floor(xhr.data.movie_count / 20),
     		currentPage = xhr.data.page_number,
-    		html = '<ul class="pagination justify-content-center">';
+    		html = '<div class="col-md-8"><nav aria-label="..." id="pagination"><ul class="pagination justify-content-center">';
     	if(pages > 10){
     		html += `<li class="page-item"><a class="page-link" href="#?">first</a></li>`;
     		let n = currentPage > 10 ? currentPage - 5 : 1,
@@ -51,6 +50,7 @@ App.View.HomePage = App.View.extend({
     		}
     		fetchData.page = pages;
     		html += `<li class="page-item"><a class="page-link" href="#?${$.param(fetchData)}">last</a></li>`;
+    		html += `</nav></div>`;
     	}
 
     	html += '</ul>';
@@ -61,6 +61,10 @@ App.View.HomePage = App.View.extend({
     	_.forEach(this.options.fetchData, function(val, key){
     		el.find(`[name="${key}"]`).val(val);
     	});
+    },
+    postRender: function(){
+    	App.View.prototype.postRender.apply(this);
+    	sessionStorage.setItem('goBackURL', window.location.hash);
     }
 });
 

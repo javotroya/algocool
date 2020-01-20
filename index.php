@@ -9,14 +9,8 @@
 </head>
 <body>
 	<div class="jumbotron jumbotron-fluid" id="search-form-container"></div>
-
-	<div class="row justify-content-md-center">
-		<div class="col-md-8">
-			<nav aria-label="..." id="pagination">
-				
-			</nav>
-		</div>
-	</div>
+	<div class="row justify-content-md-center" id="pagination"></div>
+	<div class="loader col justify-content-md-center text-center" id="loader"><span class="fas fa-sync fa-spin fa-4x"></span></div>
 	<div class="container-xl" id="main"></div>
 
 	<script type="text/javascript" src="node_modules/jquery/dist/jquery.min.js"></script>
@@ -31,7 +25,11 @@
 	<?php require_once 'js/homepage.php'; ?>
 	<?php require_once 'js/movies.php'; ?>
 	<script type="text/javascript">
+		App.ShowLoader();
 		Backbone.history.start({pushState: false});
+		Backbone.history.on('route', function(a, b){
+			App.ShowLoader();
+		});
 		if(Backbone.history.fragment === ''){
 			Backbone.history.navigate('?', {trigger: true});
 		}
