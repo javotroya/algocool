@@ -17,7 +17,7 @@ App.View.Movie = App.View.extend({
     		'background': `url(${this.data.background_image_original})`,
     		'background-size': 'cover',
     		'background-repeat': 'no-repeat',
-    		'background-position': 'top center'
+    		'background-position': 'center center'
     	});
     	$('#pagination').slideUp();
     },

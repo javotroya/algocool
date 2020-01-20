@@ -10,7 +10,7 @@ App.View.HomePage = App.View.extend({
         	success: function(collection, xhr){
         		self.renderPagination(xhr);
         		$('#pagination').slideDown();
-        		let number = Math.floor(Math.random() * 21),
+        		let number = Math.floor(Math.random() * self.collection.toJSON()[0].data.movie_count),
         			background;
         		_.forEach(self.collection.toJSON()[0].data.movies, function(movie, key){
         			if(key === number){
@@ -21,7 +21,7 @@ App.View.HomePage = App.View.extend({
 		    		'background': `url(${background})`,
 		    		'background-size': 'cover',
 		    		'background-repeat': 'no-repeat',
-		    		'background-position': 'top center'
+		    		'background-position': 'center center'
 		    	});
         	}
         });
